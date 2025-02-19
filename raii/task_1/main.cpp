@@ -6,8 +6,8 @@ using namespace std;
 class SmartArray {
 private:
 	int* arr;
-	int len{};
-	int cur{ 0 };
+	size_t len{};
+	size_t cur{ 0 };
 
 public:
 	SmartArray(int len) {
@@ -18,17 +18,16 @@ public:
 		this->len = len;
 	}
 
-	bool addElement(int elem) {
-		if (cur < len) {
-			arr[cur++] = elem;
-			return true;
+	void addElement(int elem) {
+		if (cur >= len) {
+			throw std::overflow_error("The array is full");
 		}
-		throw overflow_error("The array is full");
+		arr[cur++] = elem;
 	}
 
-	int getElement(int index) {
-		if (index < 0 || index >= len) {
-			throw out_of_range("Index out of range");
+	int getElement(size_t index) {
+		if (index >= cur) {
+			throw std::out_of_range("Index out of range");
 		}
 		return arr[index];
 	}
