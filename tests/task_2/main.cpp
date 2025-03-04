@@ -96,6 +96,13 @@ private:
 };
 
 
+TEST_CASE("PopBack and PopFront throw on empty list", "[List]") {
+    List list;
+    REQUIRE_THROWS(list.PopBack());
+    REQUIRE_THROWS(list.PopFront());
+}
+
+
 TEST_CASE("Function `PushBack` works correctly", "[List]") {
     List list;
     list.PushBack(10);
