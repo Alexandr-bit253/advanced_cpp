@@ -14,12 +14,14 @@ private:
 
 public:
 	MyVector();
+	MyVector(const MyVector<T>& other);
 	~MyVector();
 
 	void push_back(const T& value);
 	T at(size_t index) const;
 	size_t size() const;
 	size_t capacity() const;
+	MyVector<T>& operator=(const MyVector<T>& other);
 };
 
 
@@ -28,8 +30,39 @@ MyVector<T>::MyVector() : data(nullptr), vec_size(0), vec_capacity(0) {}
 
 
 template <typename T>
+MyVector<T>::MyVector(const MyVector<T>& other)
+	: vec_size(other.vec_size), vec_capacity(other.vec_capacity), data(nullptr)
+{
+	if (vec_capacity > 0) {
+		data = new T[vec_capacity];
+		std::copy(other.data, other.data + vec_size, data);
+	}
+}
+
+
+template <typename T>
 MyVector<T>::~MyVector(){
 	delete[] data;
+}
+
+
+template <typename T>
+MyVector<T>& MyVector<T>::operator=(const MyVector<T>& other) {
+	if (this == other) return *this;
+
+	T* new_data = nullptr;
+	if (other.vec_capacity > 0) {
+		new_data = new T[other.vec_capacity];
+		std::copy(other.data, other.data + other.vec_size, new_data);
+	}
+
+	delete[] data;
+
+	data = new_data;
+	vec_size = other.vec_size;
+	vec_capacity = other.vec_capacity;
+
+	return *this;
 }
 
 

@@ -14,5 +14,10 @@ int main() {
 	std::cout << "size: " << vec.size() << std::endl;
 	std::cout << "capacity: " << vec.capacity() << std::endl;
 
+	auto t1 = MyVector<int>();
+	t1.push_back(1);
+	auto t2(t1);
+	auto t3 = t1;
+
 	return 0;
 }
