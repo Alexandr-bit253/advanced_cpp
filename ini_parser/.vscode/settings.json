@@ -5,7 +5,7 @@
         "ostream": "cpp",
         "print": "cpp"
     },
-    "files.encoding": "utf8bom",
+    "files.encoding": "utf8",
     "files.autoGuessEncoding": true,
     "terminal.integrated.profiles.windows": {
         "PowerShell": {
@@ -17,6 +17,10 @@
     "cmake.parallelJobs": 4,
     "C_Cpp.default.cppStandard": "c++23",
     "[cpp]": {
-        "editor.quickSuggestions": true
+        "editor.quickSuggestions": {
+            "comments": "on",
+            "strings": "on",
+            "other": "on"
+        }
     }
 }
