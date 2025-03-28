@@ -2,10 +2,10 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Run ini_parser_main (MSVC)",
+            "name": "Run ini_parser_example (MSVC)",
             "type": "cppvsdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/build/Debug/ini_parser_main.exe",
+            "program": "${workspaceFolder}/build/Debug/ini_parser_example.exe",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}/build",
