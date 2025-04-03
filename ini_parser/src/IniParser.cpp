@@ -23,34 +23,57 @@ void IniParser::load(const std::string& filename) {
     m_data->clear();
     try {
         auto lines = m_reader->readLines(filename);
-        SyntaxValidator validator;
         std::string current_section;
         for (size_t line_num = 0; line_num < lines.size(); ++line_num) {
-            const auto& line = lines[line_num];
+            const auto& raw_line = lines[line_num];
+            const size_t global_line_num = line_num + 1;
             try {
                 // пропуск пустых строк и комментариев
-                if (line.empty() || line[0] == COMMENT) continue;
+                if (SyntaxValidator::isCommentOrEmpty(raw_line)) continue;
+
+                std::string line = raw_line;
+                SyntaxValidator::trimLine(line);
+
                 // обработка секций
                 if (line[0] == SECTION_START) {
-                    size_t end_pos = line.find(SECTION_END);
-                    if (end_pos == std::string::npos) {
-                        throw SyntaxError(line_num + 1,
-                                          "Unclosed section header");
-                    }
-                    current_section =
-                        trimWhitespace(line.substr(1, end_pos - 1));
-                    if (current_section.empty()) {
-                        throw SyntaxError(line_num + 1, "Empty section name");
-                    }
-                    m_data->addSection(current_section);//<------------------------
+                    SyntaxValidator::validateSectionLine(line, global_line_num);
+                    current_section = extractSectionName(line);
+                    m_data->addSection(current_section);
+                } else {
+                    SyntaxValidator::validateKeyValueLine(line,
+                                                          global_line_num);
+                    auto [key, value] = parseKeyValue(line);
+                    m_data->addValue(current_section, key, value);
                 }
-            } catch (const SyntaxError&) {
-                throw;
-            } catch (const std::exception& ex) {
-                throw SyntaxError(line_num + 1, ex.what());
+            } catch (const SyntaxError& ex) {
+                throw_with_nested(IniException("Error in line " +
+                                               std::to_string(global_line_num) +
+                                               ": " + ex.what()));
             }
         }
-    } catch (const std::ios_base::failure&) {
-        throw FileError(filename, "Failed to open or read file");
+    } catch (const FileError&) {
+        throw;
+    } catch (const std::exception& ex) {
+        throw IniException("Failed to parse INI file: " +
+                           std::string(ex.what()));
     }
+}
+
+std::string IniParser::extractSectionName(const std::string& line) {
+    size_t end_pos = line.find(SECTION_END);
+    std::string name = line.substr(1, end_pos - 1);
+    SyntaxValidator::trimLine(name);
+    return name;
+}
+
+std::pair<std::string, std::string> IniParser::parseKeyValue(
+    const std::string& line) {
+    size_t equal_pos = line.find(EQUAL);
+    std::string key = line.substr(0, equal_pos);
+    std::string value = line.substr(equal_pos + 1);
+
+    SyntaxValidator::trimLine(key);
+    SyntaxValidator::trimLine(value);
+
+    return {key, value};
 }

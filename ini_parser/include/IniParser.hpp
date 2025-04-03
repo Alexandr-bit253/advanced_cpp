@@ -11,6 +11,9 @@ class IniParser {
     std::unique_ptr<IniData> m_data;
     std::unique_ptr<IFileReader> m_reader;
 
+    std::string extractSectionName(const std::string& line);
+    std::pair<std::string, std::string> parseKeyValue(const std::string& line);
+
    public:
     explicit IniParser(std::unique_ptr<IFileReader> reader);
 

@@ -1,7 +1,9 @@
 add_library(ini_parser STATIC
-    IniParser.cpp
     Exceptions.cpp
+    IniData.cpp
+    IniParser.cpp
     StdFileReader.cpp
+    SyntaxValidator.cpp
 )
 
 target_include_directories(ini_parser

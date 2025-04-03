@@ -25,3 +25,19 @@ class SyntaxError : public IniException {
    private:
     size_t m_line_num{};
 };
+
+class ValueNotFound : public IniException {
+   public:
+    ValueNotFound(const std::string& section, const std::string& key,
+                  std::vector<std::string> suggestions);
+    const std::string& section() const noexcept { return m_section; }
+    const std::string& key() const noexcept { return m_key; }
+    const std::vector<std::string>& suggestions() const noexcept {
+        return m_suggestions;
+    }
+
+   private:
+    std::string m_section;
+    std::string m_key;
+    std::vector<std::string> m_suggestions;
+};
