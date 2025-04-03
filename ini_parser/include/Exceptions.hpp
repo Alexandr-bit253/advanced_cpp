@@ -41,3 +41,9 @@ class ValueNotFound : public IniException {
     std::string m_key;
     std::vector<std::string> m_suggestions;
 };
+
+class ConversionError : public IniException {
+   public:
+    explicit ConversionError(const std::string& message)
+        : IniException("Conversion error: " + message) {}
+}

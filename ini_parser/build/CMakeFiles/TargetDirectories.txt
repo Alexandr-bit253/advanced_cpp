@@ -1,0 +1,7 @@
+C:/Users/OBI_1_KENOBI/source/repos/advanced_cpp/ini_parser/build/CMakeFiles/INSTALL.dir
+C:/Users/OBI_1_KENOBI/source/repos/advanced_cpp/ini_parser/build/CMakeFiles/ALL_BUILD.dir
+C:/Users/OBI_1_KENOBI/source/repos/advanced_cpp/ini_parser/build/CMakeFiles/ZERO_CHECK.dir
+C:/Users/OBI_1_KENOBI/source/repos/advanced_cpp/ini_parser/build/src/CMakeFiles/ini_parser.dir
+C:/Users/OBI_1_KENOBI/source/repos/advanced_cpp/ini_parser/build/src/CMakeFiles/INSTALL.dir
+C:/Users/OBI_1_KENOBI/source/repos/advanced_cpp/ini_parser/build/examples/CMakeFiles/example.dir
+C:/Users/OBI_1_KENOBI/source/repos/advanced_cpp/ini_parser/build/examples/CMakeFiles/INSTALL.dir

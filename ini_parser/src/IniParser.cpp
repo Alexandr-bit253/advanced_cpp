@@ -77,3 +77,13 @@ std::pair<std::string, std::string> IniParser::parseKeyValue(
 
     return {key, value};
 }
+
+std::pair<std::string, std::string> IniParser::parseSectionKey(
+    const std::string& section_key) const {
+    size_t dot_pos = section_key.find(DOT);
+    if (dot_pos == std::string::npos || dot_pos == 0 ||
+        dot_pos == section_key.size() - 1) {
+        throw IniException("Invalid section.key format: " + section_key);
+    }
+    return {section_key.substr(0, dot_pos), section_key.substr(dot_pos + 1)};
+}
