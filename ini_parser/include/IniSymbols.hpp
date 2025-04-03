@@ -1,12 +1,12 @@
 #pragma once
 
-constexpr char SectionStart = '[';
-constexpr char SectionEnd = ']';
+constexpr char SECTION_START = '[';
+constexpr char SECTION_END = ']';
 
-constexpr char Equal = '=';
-constexpr char Comment = ';';
+constexpr char EQUAL = '=';
+constexpr char COMMENT = ';';
 
-constexpr char Space = ' ';
-constexpr char Tab = '\t';
+constexpr char SPACE = ' ';
+constexpr char TAB = '\t';
 
-constexpr char Dot = '.';
+constexpr char DOT = '.';
