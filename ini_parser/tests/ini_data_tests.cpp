@@ -10,13 +10,13 @@ TEST(IniDataTest, SectionOperation) {
 }
 
 TEST(IniDataTest, ValueStorage) {
-    ini::IniData data;
+    IniData data;
     data.addValue("Section", "key", "value");
     EXPECT_EQ(data.get("Section", "key"), "value");
 }
 
 TEST(IniDataTest, OverwriteValue) {
-    ini::IniData data;
+    IniData data;
     data.addValue("Section", "key", "old");
     data.addValue("Section", "key", "new");
     EXPECT_EQ(data.get("Section", "key"), "new");

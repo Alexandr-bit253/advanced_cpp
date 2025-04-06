@@ -7,7 +7,7 @@ TEST(SyntaxValidatorTest, ValidSection) {
 }
 
 TEST(SyntaxValidatorTest, InvalidSection) {
-    EXPECT_THROW(SyntaxValidator : validateSectionLine("[Section@1]", 1),
+    EXPECT_THROW(SyntaxValidator::validateSectionLine("[Section@1]", 1),
                  SyntaxError);
 }
 

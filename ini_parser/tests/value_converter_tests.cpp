@@ -10,7 +10,7 @@ TEST(ValueConverterTest, IntConversion) {
 TEST(ValueConverterTest, BoolConversion) {
     EXPECT_TRUE(ValueConverter<bool>::convert("true"));
     EXPECT_FALSE(ValueConverter<bool>::convert("off"));
-    EXPECT_THROW(ValueConverter<bool>::convert("yes"));
+    EXPECT_THROW(ValueConverter<bool>::convert("yes"), ConversionError);
 }
 
 TEST(ValueConverterTest, StringConversion) {
