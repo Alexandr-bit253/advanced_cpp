@@ -1,5 +1,7 @@
 #include <gtest/gtest.h>
 
+#include <memory>
+
 #include "..\include\IniData.hpp"
 
 TEST(IniDataTest, SectionOperation) {

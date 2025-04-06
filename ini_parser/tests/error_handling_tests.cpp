@@ -1,6 +1,9 @@
 #include <gtest/gtest.h>
 
+#include <memory>
+
 #include "..\include\IniParser.hpp"
+#include "..\include\StdFileReader.hpp"
 
 TEST(ErrorHandlingTest, InvalidFile) {
     auto parser = IniParser(std::make_unique<StdFileReader>());

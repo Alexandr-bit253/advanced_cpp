@@ -11,7 +11,7 @@ class ParserTest : public ::testing::Test {
     }
 
     std::unique_ptr<IniParser> parser;
-}
+};
 
 TEST_F(ParserTest, BasicParsing) {
     parser->load("test_data/valid.ini");
