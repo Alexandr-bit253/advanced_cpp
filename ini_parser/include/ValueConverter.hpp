@@ -59,8 +59,8 @@ class ValueConverter<bool> {
    public:
     static bool convert(const std::string& value) {
         const std::string lower = toLower(value);
-        if (lower == "true" || lower == "1") return true;
-        if (lower == "false" || lower == "0") return false;
+        if (lower == "true" || lower == "1" || lower == "on") return true;
+        if (lower == "false" || lower == "0" || lower == "off") return false;
         throw ConversionError("Invalid boolean value: " + value);
     }
 

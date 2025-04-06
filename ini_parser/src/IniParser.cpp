@@ -20,31 +20,26 @@ void IniParser::load(const std::string& filename) {
         for (size_t line_num = 0; line_num < lines.size(); ++line_num) {
             const auto& raw_line = lines[line_num];
             const size_t global_line_num = line_num + 1;
-            try {
-                // пропуск пустых строк и комментариев
-                if (SyntaxValidator::isCommentOrEmpty(raw_line)) continue;
+            // пропуск пустых строк и комментариев
+            if (SyntaxValidator::isCommentOrEmpty(raw_line)) continue;
 
-                std::string line = raw_line;
-                SyntaxValidator::trimLine(line);
+            std::string line = raw_line;
+            SyntaxValidator::trimLine(line);
 
-                // обработка секций
-                if (line[0] == SECTION_START) {
-                    SyntaxValidator::validateSectionLine(line, global_line_num);
-                    current_section = extractSectionName(line);
-                    m_data->addSection(current_section);
-                } else {
-                    SyntaxValidator::validateKeyValueLine(line,
-                                                          global_line_num);
-                    auto [key, value] = parseKeyValue(line);
-                    m_data->addValue(current_section, key, value);
-                }
-            } catch (const SyntaxError& ex) {
-                throw_with_nested(IniException("Error in line " +
-                                               std::to_string(global_line_num) +
-                                               ": " + ex.what()));
+            // обработка секций
+            if (line[0] == SECTION_START) {
+                SyntaxValidator::validateSectionLine(line, global_line_num);
+                current_section = extractSectionName(line);
+                m_data->addSection(current_section);
+            } else {
+                SyntaxValidator::validateKeyValueLine(line, global_line_num);
+                auto [key, value] = parseKeyValue(line);
+                m_data->addValue(current_section, key, value);
             }
         }
     } catch (const FileError&) {
+        throw;
+    } catch (const SyntaxError&) {
         throw;
     } catch (const std::exception& ex) {
         throw IniException("Failed to parse INI file: " +

@@ -15,7 +15,7 @@ std::string format_suggestions(const std::vector<std::string>& suggestions) {
 }
 
 FileError::FileError(const std::string& filename, const std::string& message)
-    : IniException("File error in '" + filename + "': " + message),
+    : IniException("Failed error in '" + filename + "': " + message),
       m_filename(filename) {}
 
 SyntaxError::SyntaxError(size_t line_num, const std::string& details)

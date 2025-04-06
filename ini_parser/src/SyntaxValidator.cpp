@@ -35,12 +35,18 @@ bool SyntaxValidator::isCommentOrEmpty(const std::string& line) noexcept {
 
 void SyntaxValidator::validateSectionName(const std::string& name,
                                           size_t line_num) {
+    const std::string allowedChars =
+        "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_-.";
+
     if (name.empty()) {
-        throw SyntaxError(line_num, "Empty section name");
+        throw SyntaxError(line_num, "Section name cannot be empty");
     }
 
-    if (!std::all_of(name.begin(), name.end(), isAllowedNameChar)) {
-        throw SyntaxError(line_num, "Invalid characters in section name");
+    for (char c : name) {
+        if (allowedChars.find(c) == std::string::npos) {
+            throw SyntaxError(line_num, "Invalid character in section name: " +
+                                            std::string(1, c));
+        }
     }
 }
 
