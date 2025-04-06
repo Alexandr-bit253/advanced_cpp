@@ -2,6 +2,8 @@
 
 #include <algorithm>
 #include <cctype>
+#include <codecvt>
+#include <locale>
 
 #include "..\include\Exceptions.hpp"
 #include "..\include\IniSymbols.hpp"
@@ -12,17 +14,22 @@ bool isAllowedNameChar(char c) {
 
 void SyntaxValidator::trimLine(std::string& line) {
     // удаление пробелов в начале и конце
-    line.erase(line.begin(), std::find_if(line.begin(), line.end(), [](int ch) {
-                   return !std::isspace(ch);
-               }));
+    auto first_non_space = std::find_if(line.begin(), line.end(), [](char ch) {
+        return !std::isspace<char>(ch, std::locale("ru_RU.UTF-8"));
+    });
+    line.erase(line.begin(), first_non_space);
 
-    line.erase(std::find_if(line.rbegin(), line.rend(),
-                            [](int ch) { return !std::isspace(ch); })
-                   .base(),
-               line.end());
+    auto last_non_space = std::find_if(line.rbegin(), line.rend(), [](char ch) {
+        return !std::isspace<char>(ch, std::locale("ru_RU.UTF-8"));
+    });
+    line.erase(last_non_space.base(), line.end());
 }
 
 bool SyntaxValidator::isCommentOrEmpty(const std::string& line) noexcept {
+    size_t first = line.find_first_not_of(" \t");
+    if (first == std::string::npos) {
+        return true;  // cтрока состоит только из пробелов/табов
+    }
     return line.empty() || line[0] == COMMENT;
 }
 

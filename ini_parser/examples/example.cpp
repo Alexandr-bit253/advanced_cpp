@@ -5,14 +5,19 @@
 #include "..\include\StdFileReader.hpp"
 
 const std::string PATH{
-    "D:\\cpp_projects\\advanced_cpp\\ini_parser\\examples\\example.ini"};
+    "C:\\Users\\OBI_1_KENOBI\\source\\repos\\advanced_cpp\\ini_"
+    "parser\\examples\\example.ini"};
 
 int main() {
     try {
         IniParser parser(std::make_unique<StdFileReader>());
         parser.load(PATH);
 
-        auto var1 = parser.get_value<std::string>("Section1.var1");
+        auto var2 = parser.get_value<std::string>("Section1.var2");
+        std::cout << var2 << std::endl;
+
+        auto var1 = parser.get_value<double>("Section1.var1");
+        std::cout << var1 << std::endl;
     } catch (const FileError& ex) {
         std::cerr << "Configuration error: " << ex.what() << "\n";
     } catch (const SyntaxError& ex) {

@@ -1,8 +1,11 @@
 #include "..\include\IniData.hpp"
 
+#include <iostream>
+
 void IniData::clear() noexcept { m_sections.clear(); }
 
 void IniData::addSection(const std::string& name) {
+    std::cout << "Adding section: '" << name << "'" << std::endl;
     m_sections.try_emplace(name);
 }
 

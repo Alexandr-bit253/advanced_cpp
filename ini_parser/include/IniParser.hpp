@@ -5,8 +5,6 @@
 #include "..\include\IniData.hpp"
 #include "..\include\ValueConverter.hpp"
 
-class IniData;
-
 class IniParser {
    private:
     std::unique_ptr<IniData> m_data;

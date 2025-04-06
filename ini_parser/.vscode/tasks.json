@@ -13,7 +13,7 @@
         {
             "label": "Build",
             "type": "shell",
-            "command": "cmake --build build --config Debug",
+            "command": "cmake --build build --config Debug && ctest --test-dir build --output-on-failure",
             "group": {
                 "kind": "build",
                 "isDefault": true

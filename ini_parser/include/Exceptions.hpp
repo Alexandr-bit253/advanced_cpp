@@ -46,4 +46,4 @@ class ConversionError : public IniException {
    public:
     explicit ConversionError(const std::string& message)
         : IniException("Conversion error: " + message) {}
-}
+};

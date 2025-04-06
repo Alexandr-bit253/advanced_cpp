@@ -1,0 +1,7 @@
+# CMake generated Testfile for 
+# Source directory: C:/Users/OBI_1_KENOBI/source/repos/advanced_cpp/ini_parser/build/_deps/googletest-src/googlemock
+# Build directory: C:/Users/OBI_1_KENOBI/source/repos/advanced_cpp/ini_parser/build/_deps/googletest-build/googlemock
+# 
+# This file includes the relevant testing commands required for 
+# testing this directory and lists subdirectories to be tested as well.
+subdirs("../googletest")

@@ -8,4 +8,4 @@ configure_file(
     COPYONLY
 )
 
-install(FILES ${CMAKE_CURRENT_BINARY_DYR}/example.ini DESTINATION examples)
+install(FILES ${CMAKE_CURRENT_BINARY_DIR}/example.ini DESTINATION examples)

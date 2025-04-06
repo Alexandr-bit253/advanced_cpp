@@ -1,16 +1,17 @@
+#include "..\include\StdFileReader.hpp"
+
 #include <algorithm>
 #include <fstream>
 
-#include "..\include\StdFileReader.hpp"
 #include "..\include\Exceptions.hpp"
+#include "..\include\IniSymbols.hpp"
 
-
-void trim(std::string& line) {
-    constexpr char whitespace[] = " \t";
-    line.erase(0, line.find_first_not_of(whitespace));
-    line.erase(line.find_last_not_of(whitespace) + 1);
+std::string trimWhitespace(const std::string& str) {
+    size_t first = str.find_first_not_of(" \t");
+    if (first == std::string::npos) return "";
+    size_t last = str.find_last_not_of(" \t");
+    return str.substr(first, (last - first + 1));
 }
-
 
 std::vector<std::string> StdFileReader::readLines(const std::string& fileName) {
     std::fstream file(fileName);
@@ -31,13 +32,12 @@ std::vector<std::string> StdFileReader::readLines(const std::string& fileName) {
     return lines;
 }
 
-
 void StdFileReader::processLine(std::string& line) {
     // удаление комментариев
-    size_t commetn_pos = line.find(';');
+    size_t commetn_pos = line.find(COMMENT);
     if (commetn_pos != std::string::npos) {
         line.resize(commetn_pos);
     }
-    
-    trim(line);
+
+    trimWhitespace(line);
 }

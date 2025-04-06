@@ -191,7 +191,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </ProjectReference>
-    <ProjectReference Include="C:\Users\OBI_1_KENOBI\source\repos\advanced_cpp\ini_parser\build\ALL_BUILD.vcxproj">
+    <ProjectReference Include="C:\Users\OBI_1_KENOBI\source\repos\advanced_cpp\ini_parser\build\_deps\googletest-build\googletest\ALL_BUILD.vcxproj">
       <Project>{DF602766-4A98-3254-9D1C-AFE80061C09E}</Project>
       <Name>ALL_BUILD</Name>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>

@@ -9,13 +9,6 @@
 #include "..\include\IniSymbols.hpp"
 #include "..\include\SyntaxValidator.hpp"
 
-std::string trimWhitespace(const std::string& str) {
-    size_t first = str.find_first_not_of(" \t");
-    if (first == std::string::npos) return "";
-    size_t last = str.find_last_not_of(" \t");
-    return str.substr(first, (last - first + 1));
-}
-
 IniParser::IniParser(std::unique_ptr<IFileReader> reader)
     : m_reader(std::move(reader)), m_data(std::make_unique<IniData>()) {}
 
