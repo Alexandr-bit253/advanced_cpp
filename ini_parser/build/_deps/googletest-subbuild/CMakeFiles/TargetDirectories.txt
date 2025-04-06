@@ -1,3 +1,0 @@
-C:/Users/OBI_1_KENOBI/source/repos/advanced_cpp/ini_parser/build/_deps/googletest-subbuild/CMakeFiles/googletest-populate.dir
-C:/Users/OBI_1_KENOBI/source/repos/advanced_cpp/ini_parser/build/_deps/googletest-subbuild/CMakeFiles/ALL_BUILD.dir
-C:/Users/OBI_1_KENOBI/source/repos/advanced_cpp/ini_parser/build/_deps/googletest-subbuild/CMakeFiles/ZERO_CHECK.dir
